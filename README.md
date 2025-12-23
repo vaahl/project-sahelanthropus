@@ -31,6 +31,7 @@ El objetivo es simular un entorno de producción Enterprise utilizando distribuc
 * **Container Engine:** Docker CE (Community Edition) v27+
 * **Orchestration:** Portainer CE
 * **Monitoring:** Uptime Kuma (HTTP/TCP checks)
+* **Network Defense:** AdGuard Home (DNS Sinkhole)
 * **Management:** Cockpit Project (Web Console)
 
 ---
@@ -39,7 +40,7 @@ El objetivo es simular un entorno de producción Enterprise utilizando distribuc
 
 ### 1. Sistema Operativo & Red
 Instalación "Minimal" para reducir la superficie de ataque y el consumo de memoria.
-* **FirewallD:** Política restrictiva por defecto (`Drop`). Puertos abiertos manualmente: `9090`, `9443`, `3001`.
+* **FirewallD:** Política restrictiva por defecto (`Drop`). Puertos abiertos manualmente: `9090`, `9443`, `3001`, `53` (DNS), `8080` (AdGuard Web).
 * **Cockpit:** Habilitado como servicio systemd para gestión ligera.
 
 ### 2. Gestión de Almacenamiento (Critical)
@@ -61,10 +62,31 @@ Por defecto, Docker almacena volúmenes en `/var/lib/docker` (Disco OS). Se modi
 }
 ```
 
-### 4. Proof of Concept
+### 4. Proof of Concept: Monitoring
 Monitoreo activo de servicios externos con Uptime Kuma:
 
 <img width="100%" alt="Uptime Kuma" src="https://github.com/user-attachments/assets/143a657c-0ad9-44da-b23a-bfd62d82dc4d" />
+
+### 5. Network Defense (AdGuard Home)
+Implementación de un servidor DNS local (Sinkhole) para bloqueo de publicidad, rastreadores y sitios maliciosos a nivel de red.
+
+**Deployment Command:**
+```bash
+# Despliegue en puertos DNS estándar (53) con persistencia en disco de datos
+sudo docker run -d --name adguard --restart unless-stopped \
+  -v /data/adguard/work:/opt/adguardhome/work \
+  -v /data/adguard/conf:/opt/adguardhome/conf \
+  -p 53:53/tcp -p 53:53/udp \
+  -p 3000:3000/tcp \
+  -p 8080:80/tcp \
+  adguard/adguardhome
+```
+
+**Traffic Analysis & Blocking Verification:**
+<img width="1112" height="1193" alt="image" src="https://github.com/user-attachments/assets/007b6bf0-af95-434e-b314-b98b395baf2f" />
+
+
+---
 
 ### Roadmap
 - [x] Hardware Restoration & BIOS Check
@@ -72,6 +94,6 @@ Monitoreo activo de servicios externos con Uptime Kuma:
 - [x] Storage Partitioning (XFS on `/data`)
 - [x] Docker & Portainer Implementation
 - [x] Basic Monitoring (Uptime Kuma)
-- [ ] DNS Filtering & Network Defense (AdGuard Home)
+- [x] DNS Filtering & Network Defense (AdGuard Home)
 - [ ] Reverse Proxy (Nginx Proxy Manager)
 - [ ] Dashboard Centralization (Homepage)
