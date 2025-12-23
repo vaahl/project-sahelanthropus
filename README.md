@@ -65,7 +65,8 @@ Por defecto, Docker almacena volúmenes en `/var/lib/docker` (Disco OS). Se modi
 ### 4. Proof of Concept: Monitoring
 Monitoreo activo de servicios externos con Uptime Kuma:
 
-<img width="100%" alt="Uptime Kuma" src="https://github.com/user-attachments/assets/143a657c-0ad9-44da-b23a-bfd62d82dc4d" />
+<img width="1112" height="1193" alt="529464761-007b6bf0-af95-434e-b314-b98b395baf2f" src="https://github.com/user-attachments/assets/7e4baec7-1e61-4350-87c7-5b7130d9bc3b" />
+
 
 ### 5. Network Defense (AdGuard Home)
 Implementación de un servidor DNS local (Sinkhole) para bloqueo de publicidad, rastreadores y sitios maliciosos a nivel de red.
