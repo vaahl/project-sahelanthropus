@@ -65,7 +65,7 @@ Por defecto, Docker almacena volúmenes en `/var/lib/docker` (Disco OS). Se modi
 ### 4. Proof of Concept: Monitoring
 Monitoreo activo de servicios externos con Uptime Kuma:
 
-<img width="1112" height="1193" alt="529464761-007b6bf0-af95-434e-b314-b98b395baf2f" src="https://github.com/user-attachments/assets/7e4baec7-1e61-4350-87c7-5b7130d9bc3b" />
+<img width="1673" height="996" alt="image" src="https://github.com/user-attachments/assets/bfe45812-3484-4be2-aac1-cf9e30dd9d55" />
 
 
 ### 5. Network Defense (AdGuard Home)
@@ -84,7 +84,8 @@ sudo docker run -d --name adguard --restart unless-stopped \
 ```
 
 **Traffic Analysis & Blocking Verification:**
-<img width="1112" height="1193" alt="image" src="https://github.com/user-attachments/assets/007b6bf0-af95-434e-b314-b98b395baf2f" />
+<img width="1112" height="1193" alt="529464761-007b6bf0-af95-434e-b314-b98b395baf2f" src="https://github.com/user-attachments/assets/0df8d537-c004-4449-bc7b-00fc10813f09" />
+
 
 
 ---
