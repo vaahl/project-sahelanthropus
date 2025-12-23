@@ -52,15 +52,14 @@ UUID=ddce45a7-8868-44f1-9a56-d89758af6d38  /data  xfs  defaults  0  0
 ```
 
 ### 3. Docker Daemon Relocation
-Por defecto, Docker almacena volúmenes en /var/lib/docker (Disco OS). Se modificó el demonio para apuntar al disco de almacenamiento masivo.
+Por defecto, Docker almacena volúmenes en `/var/lib/docker` (Disco OS). Se modificó el demonio para apuntar al disco de almacenamiento masivo.
 
-File: /etc/docker/daemon.json
-
-JSON
-
+**File: `/etc/docker/daemon.json`**
+```json
 {
   "data-root": "/data/docker"
 }
+```
 
 ### 4. Proof of Concept
 Monitoreo activo de servicios externos con Uptime Kuma:
@@ -68,18 +67,11 @@ Monitoreo activo de servicios externos con Uptime Kuma:
 <img width="100%" alt="Uptime Kuma" src="https://github.com/user-attachments/assets/143a657c-0ad9-44da-b23a-bfd62d82dc4d" />
 
 ### Roadmap
-[x] Hardware Restoration & BIOS Check
-
-[x] OS Installation (AlmaLinux 8.10) & Tuning
-
-[x] Storage Partitioning (XFS on /data)
-
-[x] Docker & Portainer Implementation
-
-[x] Basic Monitoring (Uptime Kuma)
-
-[ ] DNS Filtering & Network Defense (AdGuard Home)
-
-[ ] Reverse Proxy (Nginx Proxy Manager)
-
-[ ] Dashboard Centralization (Homepage)
+- [x] Hardware Restoration & BIOS Check
+- [x] OS Installation (AlmaLinux 8.10) & Tuning
+- [x] Storage Partitioning (XFS on `/data`)
+- [x] Docker & Portainer Implementation
+- [x] Basic Monitoring (Uptime Kuma)
+- [ ] DNS Filtering & Network Defense (AdGuard Home)
+- [ ] Reverse Proxy (Nginx Proxy Manager)
+- [ ] Dashboard Centralization (Homepage)
